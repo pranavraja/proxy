@@ -45,3 +45,12 @@ Restrict HTTPS interception to the provided hosts.
     go run cmd/proxy/main.go -nomitm
 
 Don't intercept HTTPS traffic at all.
+
+# Advanced usage
+
+You can provide a preprocessor function for the request and response. This
+allows you to do any crazy mapping logic you can think of.
+
+See `cmd/proxy/map.go` for an example of preprocessing requests.
+
+
