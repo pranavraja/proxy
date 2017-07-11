@@ -10,6 +10,12 @@ Generate a certificate and private key, in PEM-encoded format, for this proxy
 to use. You will end up with a cert.crt and cert.key file. Place these two
 files in `$GOPATH/src/github.com/pranavraja/proxy`.
 
+An example command to do this is:
+
+    openssl req -x509 -newkey rsa:4096 -sha256 -nodes -keyout cert.key -out cert.crt -days 7300
+
+...and follow the prompts.
+
 # Running
 
     go run cmd/proxy/main.go
@@ -25,6 +31,10 @@ devices you use to trust the `cert.crt` file you generated. The easiest way to
 do this is to serve the cert.crt file from a static file server on the same
 network and to visit the URL in your device's web browser. This should prompt
 the OS to download and install the certificate as a root CA.
+
+If you are on OS X, you will need to go into Keychain Access again and
+double-click the newly installed cert, and mark it as "Always Trust" for
+browsers to trust it automatically.
 
 Alternatively, you can pass the `-nomitm` flag to disable HTTPS MITM functionality.
 
